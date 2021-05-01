@@ -1,4 +1,4 @@
-const style = theme => ({
+const styles = theme => ({
     root: {
       backgroundColor: theme.palette.background.paper,
       height: 'calc(100% - 35px)',
@@ -32,4 +32,4 @@ const style = theme => ({
     }
   });
   
-  export default style;
+  export default styles;

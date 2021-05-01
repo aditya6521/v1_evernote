@@ -1,21 +1,54 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
-//import debounce from './helper.js';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
 import { withStyles } from '@material-ui/core/styles';
-import style from './style';
+import styles from './styles';
+import debounce from '../helpers';
+
+
 
 class EditorComponent extends React.Component{
 
     constructor(){
         super();
+        this.state = {
+            text: '',
+            title: '',
+            id: ''
+          };
 
     }
 
     render(){
-        return(<div>ediotor test</div>)
+
+        const {classes}=this.props;
+
+
+
+        return(
+            <div className={classes.editorContainer}>
+                <ReactQuill
+                value={this.state.text}
+                onChange={this.updateBody}> 
+                </ReactQuill>
+                
+            </div>
+        );
     }
 
+    updateBody=async (val) =>{
+        await this.setState({text:val});
+        this.update();
+    };
+
+    update=debounce(()=>{
+        console.log("database updated");
+
+    },1500);
+
+
+    
 }
 
-export default withStyles(style)(EditorComponent);
+
+export default withStyles(styles)(EditorComponent);
